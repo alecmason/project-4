@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const commentsSchema = mongoose.Schema({
+const commentSchema = mongoose.Schema({
 
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
@@ -18,7 +18,7 @@ const projectSchema = new mongoose.Schema({
     // photoUrl: String,
     description: String,
     saves: [saveSchema],
-    comments: [commentsSchema]
+    comments: [commentSchema]
 })
 
 
