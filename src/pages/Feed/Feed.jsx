@@ -18,7 +18,7 @@ export default function Feed({ user, handleLogout }) {
         data,
         " this is response from the server, in handleAddProject"
       );
-      setProjects([data.project, ...projects]);
+      setProjects([...projects, data.project]);
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -50,12 +50,12 @@ export default function Feed({ user, handleLogout }) {
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: 600 }}>
           <AddProject handleAddProject={handleAddProject} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: 600 }}>
           <ProjectFeed
             projects={projects}
             numPhotosCol={1}

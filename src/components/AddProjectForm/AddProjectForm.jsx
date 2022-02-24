@@ -1,25 +1,12 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Segment,
-  TextArea,
-} from "semantic-ui-react";
+import { Button, Form, Grid, Segment, TextArea } from "semantic-ui-react";
 
 export default function AddProjectForm(props) {
-  // const [selectedFile, setSelectedFile] = useState("");
   const [state, setState] = useState({
     projectName: "",
     description: "",
     projectUrl: "",
   });
-
-  // function handleFileInput(e) {
-  //   setSelectedFile(e.target.files[0]);
-  // }
 
   function handleChange(e) {
     setState({
@@ -35,7 +22,6 @@ export default function AddProjectForm(props) {
     formData.append("projectName", state.projectName);
     formData.append("description", state.description);
     formData.append("projectUrl", state.projectUrl);
-    // formData.append("photoUrl", selectedFile);
     props.handleAddProject(formData);
   }
 
@@ -48,9 +34,9 @@ export default function AddProjectForm(props) {
               className="form-control"
               name="projectName"
               value={state.projectName}
-              placeholder="Project Name"
+              placeholder="Project Name (Max 100 Characters)"
               onChange={handleChange}
-              maxLength="50"
+              maxLength="100"
               required
             />
             <Form.Field
@@ -70,13 +56,6 @@ export default function AddProjectForm(props) {
               placeholder="Project URL (If you have one)"
               onChange={handleChange}
             />
-            {/* <Form.Input
-              className="form-control"
-              type="file"
-              name="photo"
-              placeholder="upload image"
-              onChange={handleFileInput}
-            /> */}
             <Button color="blue" type="submit" className="btn">
               Create
             </Button>

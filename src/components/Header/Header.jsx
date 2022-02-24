@@ -6,10 +6,12 @@ export default function PageHeader({ user, handleLogout }) {
   console.log(user, "user in header");
   return (
     <Segment clearing>
-      <Header as="h2" textAlign="center">
-        <Link to="/"> Project Dev</Link>
-      </Header>
       <Header as="h2" floated="left">
+        <Link to="/">&#60;Devlist &#47;&#62;</Link>
+      </Header>
+
+      <Header as="h2" floated="right">
+        {user.username}
         <Image
           src={
             user?.photoUrl
@@ -18,10 +20,7 @@ export default function PageHeader({ user, handleLogout }) {
           }
           avatar
         ></Image>
-        {user.username}
-      </Header>
 
-      <Header as="h2" floated="right">
         <Link to="" onClick={handleLogout}>
           Logout
         </Link>
@@ -29,28 +28,3 @@ export default function PageHeader({ user, handleLogout }) {
     </Segment>
   );
 }
-
-// {<Segment clearing>
-// <Header as="h2" floated="right">
-//   <Link to="/">
-//     <Icon name="home"></Icon>
-//   </Link>
-//   <Link to="" onClick={handleLogout}>
-//     Logout
-//   </Link>
-// </Header>
-// <Header as="h2" floated="left">
-//   <Image
-//     src={
-//       user?.photoUrl
-//         ? user?.photoUrl
-//         : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-//     }
-//     avatar
-//   ></Image>
-//   {user.username}
-// </Header>
-// <Header as="h2" textAlign="center">
-//   <Link to="/"> Project Dev</Link>
-// </Header>
-// </Segment>}
