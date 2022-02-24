@@ -1,28 +1,35 @@
 const Project = require('../models/project')
-const S3 = require('aws-sdk/clients/s3');
-const { v4: uuidv4 } = require('uuid');
 
-const s3 = new S3()
+// const S3 = require('aws-sdk/clients/s3');
+// const { v4: uuidv4 } = require('uuid');
 
-const BUCKET_NAME = process.env.BUCKET
+// const s3 = new S3()
+
+// const BUCKET_NAME = process.env.BUCKET
 
 module.exports = {
     create,
     index
 }
 
-function create(req, res) {
-    console.log(req.file, req.body, 'this is create method', req.user)
+async function create(req, res) {
+    console.log(/* req.file, */ req.body, 'this is create method', req.user)
     try {
-        const filePath = `${uuidv4()}/${req.file.originalname}`
-        const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer };
-        s3.upload(params, async function (err, data) {
+        // const filePath = `${uuidv4()}/${req.file.originalname}`
+        // const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer };
+        // s3.upload(params, async function (err, data) {
 
-            const post = await Post.create({ caption: req.body.caption, user: req.user, photoUrl: data.Location });
+        const project = await Project.create({
+            projectName: req.body.projectName,
+            description: req.body.description,
+            projectUrl: req.body.projectUrl,
+            user: req.user,
+            /* , photoUrl: data.Location */
+        });
 
-            console.log(post)
-            res.status(201).json({ post: post })
-        })
+        console.log(project)
+        res.status(201).json({ project: project })
+
 
 
     } catch (err) {
@@ -33,9 +40,71 @@ function create(req, res) {
 
 async function index(req, res) {
     try {
-        const posts = await Post.find({}).populate('user').exec()
-        res.status(200).json({ posts })
+        const projects = await Project.find({}).populate('user').exec()
+        res.status(200).json({ projects })
     } catch (err) {
 
     }
 }
+
+
+
+/* 
+const Post = require('../models/post');
+
+const { v4: uuidv4 } = require("uuid");
+const S3 = require("aws-sdk/clients/s3");
+const s3 = new S3(); // initialize the S3 constructor
+
+const BUCKET = process.env.BUCKET;
+
+module.exports = {
+    create,
+    index
+}
+
+function create(req, res){
+    console.log(req.body, " <- req.body", req.file, " <photo", req.user)
+
+    const filePath = `${uuidv4()}${req.file.originalname}`;
+    const params = {Bucket: BUCKET, Key: filePath, Body: req.file.buffer}
+
+    // s3 making a request to aws s3 bucket
+    s3.upload(params, async function(err, data){
+        // check aws error
+        if (err) return res.status(400).json({err})
+        // We're inside of the response from aws 
+        try {
+            // model talking to mongodb
+            let post = await Post.create({
+                caption: req.body.caption,
+                user: req.user,
+                photoUrl: data.Location
+            })
+
+            post = await post.populate('user')
+
+            // respond to the client
+            // What file on the client can we log out this response?
+            res.status(201).json({post})
+
+
+        } catch(err){
+            console.log(err)
+            res.status(400).json({err})
+        }
+    })
+ }
+ 
+async function index(req, res) {
+    try {
+      // this populates the user when you find the posts
+      // so you'll have access to the users information
+      // when you fetch teh posts
+      const posts = await Post.find({}).populate("user").exec();
+      res.status(200).json({ posts: posts });
+    } catch (err) {
+      res.status(400).json({ err });
+    }
+  } 
+  */

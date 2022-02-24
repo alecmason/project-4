@@ -10,6 +10,8 @@ const upload = multer(); // <- handles multipart/formdata requests(photos)
 router.post('/', isAuthenticated, upload.single('photo'), projectsCtrl.create);
 router.get('/', projectsCtrl.index)
 
+// router.get('/project/:id', projectsCtrl.show);
+
 
 /*---------- Protected Routes ----------*/
 function isAuthenticated(req, res, next) {

@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
 
-const commentSchema = mongoose.Schema({
+// const commentSchema = mongoose.Schema({
 
-    username: String,
-    photoUrl: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    textContent: String
-})
+//     username: String,
+//     photoUrl: String,
+//     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+//     textContent: String
+// })
 
-const saveSchema = mongoose.Schema({
+// const saveSchema = mongoose.Schema({
 
-    username: String,
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-})
+//     username: String,
+//     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+// })
 
 const projectSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     projectName: String,
     description: String,
-    photoUrl: String,
     projectUrl: String,
-    saves: [saveSchema],
-    comments: [commentSchema]
+    // photoUrl: String,
+    // saves: [saveSchema],
+    // comments: [commentSchema]
 })
 
 
