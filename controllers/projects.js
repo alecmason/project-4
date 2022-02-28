@@ -10,7 +10,8 @@ const Project = require('../models/project')
 module.exports = {
     create,
     index,
-    // show
+    detail,
+    delete: deleteProject
 }
 
 async function create(req, res) {
@@ -48,11 +49,22 @@ async function index(req, res) {
     }
 }
 
-// async function show(req, res) {
-//     try {
-//         const project = await Project.findById({}).populate('user').exec()
-//         res.status(200).json({ projects })
-//     } catch (err) {
+// show full project description
+async function detail(req, res) {
+    try {
+        // const projects = await Project.find({}).populate('user').exec()
+        res.status(200).json({ projects })
+    } catch (err) {
 
-//     }
-// }
+    }
+}
+
+
+// delete one project by user
+async function deleteProject(req, res) {
+    try {
+        console.log(req.body)
+    } catch (err) {
+
+    }
+}

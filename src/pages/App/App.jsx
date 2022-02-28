@@ -6,6 +6,7 @@ import LoginPage from "../LoginPage/LoginPage";
 // import ProfilePage from "../ProfilePage/ProfilePage";
 import Feed from "../Feed/Feed";
 import userService from "../../utils/userService";
+import ProjectDetail from "../ProjectDetail/ProjectDetail";
 
 function App() {
   const [user, setUser] = useState(userService.getUser());
@@ -36,10 +37,10 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
-        {/* <Route
-          path="/:username"
-          element={<ProfilePage user={user} handleLogout={handleLogout} />}
-        /> */}
+        <Route
+          path="/projects/:id"
+          element={<ProjectDetail user={user} handleLogout={handleLogout} />}
+        />
       </Routes>
     );
   }

@@ -30,3 +30,16 @@ export function getAll() {
             throw new Error('Problem Fetching Get All')
         })
 }
+
+
+export function getOne() {
+    // return fetch(BASE_URL, {
+    //     headers: {
+    //         'Authorization': 'Bearer ' + tokenService.getToken()
+    //     }
+    // })
+    //     .then(res => {
+    //         if (res.ok) return res.json()
+    //         throw new Error('Problem Fetching Get All')
+    //     })
+}
