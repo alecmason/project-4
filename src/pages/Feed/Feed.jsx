@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import AddProject from "../../components/AddProjectForm/AddProjectForm";
 import ProjectFeed from "../../components/ProjectFeed/ProjectFeed";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as projectsAPI from "../../utils/projectApi";
 // import {create, getAll} from '../../utils/ProjectApi'
 import { Grid } from "semantic-ui-react";
@@ -10,6 +10,8 @@ import { Grid } from "semantic-ui-react";
 export default function Feed({ user, handleLogout }) {
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState("");
+
+  console.log(projects, "<- projects in Feed");
 
   async function handleAddProject(project) {
     try {
@@ -56,15 +58,7 @@ export default function Feed({ user, handleLogout }) {
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 600 }}>
-          <ProjectFeed
-            projects={projects}
-            numPhotosCol={1}
-            // isProfile={false}
-            user={user}
-            // addLike={addLike}
-            // loading={loading}
-            // removeLike={removeLike}
-          />
+          <ProjectFeed projects={projects} numPhotosCol={1} user={user} />
         </Grid.Column>
       </Grid.Row>
     </Grid>

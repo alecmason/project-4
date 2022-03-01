@@ -9,9 +9,8 @@ const upload = multer(); // <- handles multipart/formdata requests(photos)
 // photo is the key on the formData object in the AddPost component
 router.post('/', isAuthenticated, upload.single('photo'), projectsCtrl.create);
 router.get('/', projectsCtrl.index)
-
 router.get('/:id', projectsCtrl.detail);
-// router.delete('/:id', projectsCtrl.delete);
+router.delete('/:id', projectsCtrl.delete);
 
 
 /*---------- Protected Routes ----------*/

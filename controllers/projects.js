@@ -15,18 +15,13 @@ module.exports = {
 }
 
 async function create(req, res) {
-    console.log(/* req.file, */ req.body, 'this is create method', req.user)
+    console.log(req.body, 'this is create method', req.user)
     try {
-        // const filePath = `${uuidv4()}/${req.file.originalname}`
-        // const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer };
-        // s3.upload(params, async function (err, data) {
-
         const project = await Project.create({
             projectName: req.body.projectName,
             description: req.body.description,
             projectUrl: req.body.projectUrl,
             user: req.user,
-            /* , photoUrl: data.Location */
         });
 
         console.log(project)
@@ -52,10 +47,11 @@ async function index(req, res) {
 // show full project description
 async function detail(req, res) {
     try {
-        // const projects = await Project.find({}).populate('user').exec()
-        res.status(200).json({ projects })
+        const project = await Project.findOne({ _id: req.params.id }).populate('user').exec()
+        res.status(200).json({ project })
     } catch (err) {
-
+        console.log(err)
+        res.status(400).json({ err })
     }
 }
 
@@ -63,8 +59,26 @@ async function detail(req, res) {
 // delete one project by user
 async function deleteProject(req, res) {
     try {
-        console.log(req.body)
+        const project = await Project.findOne({ _id: req.params.id })
+        project.remove(req.params.id)
+        console.log(project, '<- project in delete')
+        await project.save()
+        res.json({ data: 'project removed' })
     } catch (err) {
-
+        res.status(400).json({ err })
     }
 }
+
+// async function deleteLike(req, res) {
+//     try {
+
+//         const post = await Post.findOne({ 'likes._id': req.params.id, 'likes.username': req.user.username });
+//         post.likes.remove(req.params.id) // mutating a document
+//         console.log(post, " <-= post in delete!")
+//         // req.params.id is the like id 
+//         await post.save() // after you mutate a document you must save
+//         res.json({ data: 'like removed' })
+//     } catch (err) {
+//         res.status(400).json({ err })
+//     }
+// }

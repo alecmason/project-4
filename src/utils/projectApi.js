@@ -32,14 +32,28 @@ export function getAll() {
 }
 
 
-export function getOne() {
-    // return fetch(BASE_URL, {
-    //     headers: {
-    //         'Authorization': 'Bearer ' + tokenService.getToken()
-    //     }
-    // })
-    //     .then(res => {
-    //         if (res.ok) return res.json()
-    //         throw new Error('Problem Fetching Get All')
-    //     })
+export function getOne(projectId) {
+    return fetch(`${BASE_URL}/${projectId}`, {
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        }
+    })
+        .then(res => {
+            if (res.ok) return res.json()
+            throw new Error('Problem Fetching Get All')
+        })
+}
+
+
+export function deleteProject(projectId) {
+    return fetch(`${BASE_URL}/${projectId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken() // <- the jwt contains the user who is sending the like
+        }
+    }).then(res => {
+        console.log(res.ok, " <- res.ok")
+        if (res.ok) return res.json();
+        throw new Error('Error in deleting the like, check your express terminal!')
+    })
 }
