@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { Card, Button, Grid } from "semantic-ui-react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import * as projectsAPI from "../../utils/projectApi";
 
 export default function ProjectDetail({ user }) {
   const [project, setProject] = useState("");
 
+  let navigate = useNavigate();
   let params = useParams();
 
   console.log(params, "<- params in ProjectDetail");
 
-  async function deleteProject(projectId) {
+  async function deleteProject() {
     try {
       const projectId = params.id;
+
       const project = await projectsAPI.deleteProject(projectId);
+
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
