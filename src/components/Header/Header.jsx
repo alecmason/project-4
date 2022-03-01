@@ -7,7 +7,7 @@ export default function PageHeader({ user, handleLogout }) {
   return (
     <Segment clearing>
       <Header as="h2" floated="left">
-        <Link to="/">&#60;DevProjects &#47;&#62;</Link>
+        <Link to="/">&#60;ProjectDeveloper &#47;&#62;</Link>
       </Header>
 
       <Header as="h2" floated="right">
