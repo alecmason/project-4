@@ -68,17 +68,3 @@ async function deleteProject(req, res) {
         res.status(400).json({ err })
     }
 }
-
-// async function deleteLike(req, res) {
-//     try {
-
-//         const post = await Post.findOne({ 'likes._id': req.params.id, 'likes.username': req.user.username });
-//         post.likes.remove(req.params.id) // mutating a document
-//         console.log(post, " <-= post in delete!")
-//         // req.params.id is the like id 
-//         await post.save() // after you mutate a document you must save
-//         res.json({ data: 'like removed' })
-//     } catch (err) {
-//         res.status(400).json({ err })
-//     }
-// }

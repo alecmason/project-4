@@ -12,12 +12,7 @@ export default function ProjectCard({ project, user }) {
     <Card key={project._id} raised>
       <Card.Content textAlign="left">
         <Card.Header>
-          <Link
-            to={`/projects/${project._id}`}
-            // onClick={() => navigate(<ProjectDetail project={project} />)}
-          >
-            {project.projectName}
-          </Link>
+          <Link to={`/projects/${project._id}`}>{project.projectName}</Link>
         </Card.Header>
       </Card.Content>
       <Card.Content textAlign="right">
@@ -35,5 +30,3 @@ export default function ProjectCard({ project, user }) {
     </Card>
   );
 }
-
-// component={<ProjectDetail project={project} />}

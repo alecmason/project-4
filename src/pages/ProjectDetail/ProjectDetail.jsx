@@ -20,16 +20,6 @@ export default function ProjectDetail({ user }) {
     }
   }
 
-  // async function removeLike(likeId) {
-  //   try {
-  //     const data = await likesAPI.removeLike(likeId);
-  //     getPosts(); // < - will get all the posts and update the state, with our like added to the post
-  //   } catch (err) {
-  //     console.log(err.message);
-  //     setError(err.message);
-  //   }
-  // }
-
   useEffect(() => {
     console.log("useEffect projectdetail");
 

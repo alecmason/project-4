@@ -1,39 +1,22 @@
-## Setup 
+# ProjectDev
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+The goal of ProjectDev is to be a Craigslist for web developers. Once a user in signed up or logged in, they may browse a list
+of projects posted by other developers. Projects can range from a small mobile app to large web apps. Users can find a project they are interested in and email the user who submitted the project. A user can also post a project they want help with.
 
+## Screenshots
 
-#### Setup your git repo
+## Technologies Used
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2.  Then follow the directions on github that says ```…or create a new repository on the command line```
+- ReactJS
+- ExpressJS
+- MongoDB
+- Node
+- Semantic UI
 
-it should look like this
+## Getting Started
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be
-git push -u origin master
-```
+## Trello
 
-#### Setup the App
+[Trello Board](https://trello.com/b/NBWXy5iY/project-4)
 
-```npm install```
-
-*DOTENV*
-
-`touch .env`
-
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+## IceBox
