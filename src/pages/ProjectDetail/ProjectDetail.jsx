@@ -17,7 +17,7 @@ export default function ProjectDetail({ user }) {
       const projectId = params.id;
 
       const project = await projectsAPI.deleteProject(projectId);
-
+      params = null;
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -28,10 +28,12 @@ export default function ProjectDetail({ user }) {
     console.log("useEffect projectdetail");
 
     const makeApiCall = async () => {
-      const projectId = params.id;
-      const res = await projectsAPI.getOne(projectId);
-      setProject(res);
-      console.log(res, "<- res project detail");
+      if (params.id) {
+        const projectId = params.id;
+        const res = await projectsAPI.getOne(projectId);
+        setProject(res);
+        console.log(res, "<- res project detail");
+      } else return;
     };
     makeApiCall();
   }, []);

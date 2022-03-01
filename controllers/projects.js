@@ -36,11 +36,13 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
+    console.log('hitting the index')
     try {
         const projects = await Project.find({}).populate('user').exec()
+        if (!projects) return console.log('no projects')
         res.status(200).json({ projects })
     } catch (err) {
-
+        console.log(err)
     }
 }
 
@@ -58,13 +60,16 @@ async function detail(req, res) {
 
 // delete one project by user
 async function deleteProject(req, res) {
+    console.log(req.params, '<- req.parrams deleteproject controller')
     try {
-        const project = await Project.findOne({ _id: req.params.id })
-        project.remove(req.params.id)
+        const project = await Project.findByIdAndDelete(req.params.id)
+        if (!project) return console.log('did not find project')
+
         console.log(project, '<- project in delete')
-        await project.save()
-        res.json({ data: 'project removed' })
+        // await project.save()
+        res.status(200).json({ data: 'project removed' })
     } catch (err) {
+        console.log(err)
         res.status(400).json({ err })
     }
 }

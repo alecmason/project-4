@@ -33,20 +33,21 @@ export function getAll() {
 
 
 export function getOne(projectId) {
-    return fetch(`${BASE_URL}/${projectId}`, {
+    return fetch(`${BASE_URL}${projectId}`, {
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken()
         }
     })
         .then(res => {
             if (res.ok) return res.json()
-            throw new Error('Problem Fetching Get All')
+            throw new Error('Problem Fetching Get one')
         })
 }
 
 
 export function deleteProject(projectId) {
-    return fetch(`${BASE_URL}/${projectId}`, {
+    console.log(projectId, 'projectId in deleteproject api')
+    return fetch(`${BASE_URL}${projectId}`, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + tokenService.getToken() // <- the jwt contains the user who is sending the like
@@ -54,6 +55,6 @@ export function deleteProject(projectId) {
     }).then(res => {
         console.log(res.ok, " <- res.ok")
         if (res.ok) return res.json();
-        throw new Error('Error in deleting the like, check your express terminal!')
+        throw new Error('Error in deleting the project, check your express terminal!')
     })
 }
