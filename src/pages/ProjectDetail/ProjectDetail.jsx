@@ -17,7 +17,7 @@ export default function ProjectDetail({ user, handleLogout }) {
       const projectId = params.id;
 
       const project = await projectsAPI.deleteProject(projectId);
-      params = null;
+      // params = null;
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -33,7 +33,7 @@ export default function ProjectDetail({ user, handleLogout }) {
         const res = await projectsAPI.getOne(projectId);
         setProject(res);
         console.log(res, "<- res project detail");
-      } else return;
+      }
     };
     makeApiCall();
   }, []);
