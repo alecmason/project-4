@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import * as projectsAPI from "../../utils/projectApi";
 
-export default function ProjectDetail({ user }) {
+export default function ProjectDetail({ user, handleLogout }) {
   const [project, setProject] = useState("");
 
   let navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function ProjectDetail({ user }) {
   if (project.project?.user._id === user._id) {
     return (
       <>
-        <Header user={user} />
+        <Header user={user} handleLogout={handleLogout} />
         <Grid centered>
           <Card>
             <Card.Content>
@@ -85,7 +85,7 @@ export default function ProjectDetail({ user }) {
   } else {
     return (
       <>
-        <Header user={user} />
+        <Header user={user} handleLogout={handleLogout} />
         <Grid centered>
           <Card>
             <Card.Content>
