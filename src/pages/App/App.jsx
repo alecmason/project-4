@@ -18,10 +18,8 @@ function App() {
     userService.logout();
     setUser(null);
   }
-  // {user ? <Routes>With feed and profifle</Routes : <Routes login signup> </Routes}
   console.log(user, " this user");
   if (user) {
-    // are we logged in?
     return (
       <Routes>
         <Route

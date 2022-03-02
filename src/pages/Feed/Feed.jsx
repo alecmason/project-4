@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import AddProject from "../../components/AddProjectForm/AddProjectForm";
 import ProjectFeed from "../../components/ProjectFeed/ProjectFeed";
-// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as projectsAPI from "../../utils/projectApi";
-// import {create, getAll} from '../../utils/ProjectApi'
 import { Grid } from "semantic-ui-react";
 
 export default function Feed({ user, handleLogout }) {
